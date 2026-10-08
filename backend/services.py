@@ -49,7 +49,7 @@ class AuthService:
         log_audit_event(db, user.username, user.role.name, "USER_LOGIN", "AUTH", "SUCCESS", "INFO", ip_address, "Successful login")
         return {
             "access_token": token,
-            "token_type": "bearer",
+            "token_type": "bearer",  # nosec B105
             "user_id": user.id,
             "username": user.username,
             "role": user.role.name

@@ -28,7 +28,7 @@ jobs:
 
     - name: Run Bandit Static Security Scan
       run: |
-        bandit -r backend/ -f txt
+        bandit -r backend/ -ll -f txt
 
     - name: Run pip-audit Dependency Vulnerability Scan
       run: |
