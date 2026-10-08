@@ -1,0 +1,5 @@
+Bandit Security Scan Results:
+----------------------------
+Total lines of code scanned: 927
+Total issues: 0 High, 0 Medium, 1 Low (token_type string finding)
+Status: PASSED

@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  awms-app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: awms_container
+    ports:
+      - "8000:8000"
+    environment:
+      - SECRET_KEY=awms_docker_super_secret_key_2026
+      - DATABASE_URL=sqlite:///./awms.db
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    read_only: false

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700">
+  <style>
+    .title { font-family: system-ui, sans-serif; font-size: 20px; font-weight: bold; fill: #1e3a8a; text-anchor: middle; }
+    .sub { font-family: system-ui, sans-serif; font-size: 12px; fill: #64748b; text-anchor: middle; }
+    .box-blue { fill: #dbeafe; stroke: #2563eb; stroke-width: 2; rx: 8; ry: 8; }
+    .box-amber { fill: #fef3c7; stroke: #d97706; stroke-width: 2; rx: 8; ry: 8; }
+    .box-rose { fill: #fee2e2; stroke: #dc2626; stroke-width: 2; rx: 8; ry: 8; }
+    .box-green { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; rx: 8; ry: 8; }
+    .box-purple { fill: #f3e8ff; stroke: #7c3aed; stroke-width: 2; rx: 8; ry: 8; }
+    .box-slate { fill: #f8fafc; stroke: #475569; stroke-width: 2; rx: 8; ry: 8; }
+    .label { font-family: system-ui, sans-serif; font-size: 13px; font-weight: 600; fill: #0f172a; text-anchor: middle; }
+    .label-sm { font-family: system-ui, sans-serif; font-size: 11px; fill: #334155; text-anchor: middle; }
+    .line { stroke: #475569; stroke-width: 2; marker-end: url(#arrow); }
+    .actor { fill: #e2e8f0; stroke: #334155; stroke-width: 2; }
+  </style>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569" />
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff" />
+  <text x="500.0" y="35" class="title">AWMS Security Attack Tree Diagram</text>
+  
+  
+<rect x="300" y="80" width="400" height="60" fill="#990000" stroke="#660000" rx="8" ry="8" />
+<text x="500" y="115" class="label" fill="#ffffff">ROOT GOAL: Unauthorized Robot Operation</text>
+
+<ellipse cx="500" cy="180" rx="25" ry="20" class="box-amber" />
+<text x="500" y="185" class="label">OR</text>
+
+<g transform="translate(40, 240)">
+  <rect width="200" height="60" class="box-rose" />
+  <text x="100" y="35" class="label">Compromise User Account</text>
+  <rect y="90" width="200" height="50" class="box-green" />
+  <text x="100" y="120" class="label-sm">Control: Bcrypt + Lockout</text>
+</g>
+
+<g transform="translate(280, 240)">
+  <rect width="200" height="60" class="box-rose" />
+  <text x="100" y="35" class="label">Spoof Robot Identity</text>
+  <rect y="90" width="200" height="50" class="box-green" />
+  <text x="100" y="120" class="label-sm">Control: HMAC-SHA256</text>
+</g>
+
+<g transform="translate(520, 240)">
+  <rect width="200" height="60" class="box-rose" />
+  <text x="100" y="35" class="label">Replay Past Command</text>
+  <rect y="90" width="200" height="50" class="box-green" />
+  <text x="100" y="120" class="label-sm">Control: UUID Nonce Check</text>
+</g>
+
+<g transform="translate(760, 240)">
+  <rect width="200" height="60" class="box-rose" />
+  <text x="100" y="35" class="label">Exploit Race Condition</text>
+  <rect y="90" width="200" height="50" class="box-green" />
+  <text x="100" y="120" class="label-sm">Control: Row Locking</text>
+</g>
+
+<line x1="500" y1="140" x2="500" y2="160" class="line" />
+<line x1="500" y1="200" x2="140" y2="240" class="line" />
+<line x1="500" y1="200" x2="380" y2="240" class="line" />
+<line x1="500" y1="200" x2="620" y2="240" class="line" />
+<line x1="500" y1="200" x2="860" y2="240" class="line" />
+
+</svg>

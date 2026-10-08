@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700">
+  <style>
+    .title { font-family: system-ui, sans-serif; font-size: 20px; font-weight: bold; fill: #1e3a8a; text-anchor: middle; }
+    .sub { font-family: system-ui, sans-serif; font-size: 12px; fill: #64748b; text-anchor: middle; }
+    .box-blue { fill: #dbeafe; stroke: #2563eb; stroke-width: 2; rx: 8; ry: 8; }
+    .box-amber { fill: #fef3c7; stroke: #d97706; stroke-width: 2; rx: 8; ry: 8; }
+    .box-rose { fill: #fee2e2; stroke: #dc2626; stroke-width: 2; rx: 8; ry: 8; }
+    .box-green { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; rx: 8; ry: 8; }
+    .box-purple { fill: #f3e8ff; stroke: #7c3aed; stroke-width: 2; rx: 8; ry: 8; }
+    .box-slate { fill: #f8fafc; stroke: #475569; stroke-width: 2; rx: 8; ry: 8; }
+    .label { font-family: system-ui, sans-serif; font-size: 13px; font-weight: 600; fill: #0f172a; text-anchor: middle; }
+    .label-sm { font-family: system-ui, sans-serif; font-size: 11px; fill: #334155; text-anchor: middle; }
+    .line { stroke: #475569; stroke-width: 2; marker-end: url(#arrow); }
+    .actor { fill: #e2e8f0; stroke: #334155; stroke-width: 2; }
+  </style>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569" />
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff" />
+  <text x="500.0" y="35" class="title">AWMS Secure Layered Architecture</text>
+  
+  
+<rect x="100" y="90" width="800" height="60" class="box-blue" />
+<text x="500" y="125" class="label">Presentation Layer (Single Page Web Application UI)</text>
+
+<rect x="100" y="180" width="800" height="60" class="box-rose" />
+<text x="500" y="215" class="label">Authentication &amp; RBAC Authorization Middleware (JWT + Role Checking)</text>
+
+<rect x="100" y="270" width="800" height="80" class="box-amber" />
+<text x="500" y="305" class="label">Business Services Layer</text>
+<text x="500" y="330" class="label-sm">(AuthService, InventoryService, RobotService, TaskService, CommandAuthorizationService)</text>
+
+<rect x="100" y="380" width="800" height="60" class="box-green" />
+<text x="500" y="415" class="label">Data Access Layer (SQLAlchemy ORM + ACID Concurrency Locks with_for_update)</text>
+
+<path d="M 400 480 C 400 460 600 460 600 480 L 600 550 C 600 570 400 570 400 550 Z" class="box-slate" />
+<text x="500" y="520" class="label">Database (SQLite)</text>
+
+<line x1="500" y1="150" x2="500" y2="180" class="line" />
+<line x1="500" y1="240" x2="500" y2="270" class="line" />
+<line x1="500" y1="350" x2="500" y2="380" class="line" />
+<line x1="500" y1="440" x2="500" y2="470" class="line" />
+
+</svg>

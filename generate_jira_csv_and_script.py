@@ -1,0 +1,47 @@
+import os
+import csv
+
+JIRA_DIR = r"C:\Users\ayila\.gemini\antigravity-ide\scratch\AWMS\jira"
+os.makedirs(JIRA_DIR, exist_ok=True)
+
+csv_path = os.path.join(JIRA_DIR, "jira_import.csv")
+
+headers = [
+    "Issue Key", "Issue Type", "Summary", "Description", "Priority", "Story Points", "Epic Name", "Epic Link", "Acceptance Criteria", "Start Date", "Due Date"
+]
+
+rows = [
+    # Epics
+    ["EPIC-01", "Epic", "Authentication and RBAC", "Implement secure JWT session authentication, bcrypt password hashing, account lockout and RBAC authorization.", "Highest", "", "Authentication and RBAC", "", "", "2026-10-08", "2026-10-18"],
+    ["EPIC-02", "Epic", "Inventory Management", "ACID protected stock level balance updates, reservation tracking, and item management.", "Highest", "", "Inventory Management", "", "", "2026-10-15", "2026-10-25"],
+    ["EPIC-03", "Epic", "Robot Registration and Management", "Robot identity registration, secret management, battery monitoring, and heartbeat tracking.", "Highest", "", "Robot Registration and Management", "", "", "2026-10-20", "2026-11-01"],
+    ["EPIC-04", "Epic", "Warehouse Task Management", "Creation, assignment, and status transition of pickup and drop tasks.", "High", "", "Warehouse Task Management", "", "", "2026-10-25", "2026-11-05"],
+    ["EPIC-05", "Epic", "Order Fulfillment", "Customer order placement, item reservation, fulfillment pipeline, and tracking.", "High", "", "Order Fulfillment", "", "", "2026-11-06", "2026-11-18"],
+    ["EPIC-06", "Epic", "Secure Robot Command Control", "HMAC-SHA256 command signing, UUID Nonce anti-replay verification, and state conflict prevention.", "Highest", "", "Secure Robot Command Control", "", "", "2026-11-12", "2026-11-25"],
+    ["EPIC-07", "Epic", "Audit Logging and Security Monitoring", "Tamper-evident audit log stream and real-time security metrics dashboard.", "High", "", "Audit Logging and Security Monitoring", "", "", "2026-11-20", "2026-12-01"],
+    ["EPIC-08", "Epic", "Secure DevOps and Deployment", "Hardened Docker image build, Kubernetes pod security, and automated CI/CD pipeline.", "High", "", "Secure DevOps and Deployment", "", "", "2026-11-25", "2026-12-04"],
+
+    # Stories
+    ["AWMS-01", "Story", "Secure User Login", "As a warehouse user, I want to securely log in, so that only authenticated users can access operations.", "Highest", "3", "", "Authentication and RBAC", "Valid credentials return JWT token. Invalid credentials rejected with 401.", "2026-10-08", "2026-10-18"],
+    ["AWMS-02", "Story", "Role Assignment & RBAC", "As a warehouse administrator, I want to assign roles to users safely.", "Highest", "5", "", "Authentication and RBAC", "Only Administrators can assign roles. Self-privilege escalation blocked with 403.", "2026-10-12", "2026-10-22"],
+    ["AWMS-03", "Story", "View Inventory Balance", "As a warehouse operator, I want to view inventory.", "High", "3", "", "Inventory Management", "Authorized operators can view stock. Unauthorized users denied.", "2026-10-15", "2026-10-25"],
+    ["AWMS-04", "Story", "Secure Inventory Update", "As an admin, I want to update inventory stock with ACID transaction locks.", "Highest", "5", "", "Inventory Management", "SQLAlchemy with_for_update locking. Negative stock rejected.", "2026-10-18", "2026-10-28"],
+    ["AWMS-05", "Story", "Register Autonomous Robot", "As an admin, register robots with unique secrets and codes.", "Highest", "5", "", "Robot Registration and Management", "Robot identity verified via secret key. Duplicate IDs rejected.", "2026-10-20", "2026-11-01"],
+    ["AWMS-06", "Story", "Robot Command Authorization", "As an admin, authorize robot commands using HMAC-SHA256 signatures.", "Highest", "8", "", "Secure Robot Command Control", "HMAC verification using robot secret key. Invalid signatures rejected.", "2026-11-06", "2026-11-20"],
+    ["AWMS-07", "Story", "Monitor Robot Status", "As an operator, monitor robot battery, location, and heartbeat.", "High", "3", "", "Robot Registration and Management", "Real-time heartbeat monitoring. Offline status alert after timeout.", "2026-10-25", "2026-11-05"],
+    ["AWMS-08", "Story", "Create Warehouse Task", "As an operator, create pickup and drop fulfillment tasks.", "High", "5", "", "Warehouse Task Management", "Task assigned unique task code and locations.", "2026-10-25", "2026-11-05"],
+    ["AWMS-09", "Story", "Assign AGV to Task", "As an admin, assign available IDLE robots to tasks.", "Highest", "5", "", "Warehouse Task Management", "Only IDLE robots assigned. Busy robots rejected.", "2026-10-28", "2026-11-05"],
+    ["AWMS-10", "Story", "Prevent Command Conflict", "As system, prevent simultaneous execution of conflicting commands on same robot.", "Highest", "8", "", "Secure Robot Command Control", "Active command state check. Concurrent calls rejected with 409 Conflict.", "2026-11-12", "2026-11-25"],
+    ["AWMS-11", "Story", "Prevent Replay Attack", "As system, prevent replaying of past robot commands using nonces.", "Highest", "5", "", "Secure Robot Command Control", "UUID Nonce tracking. Replayed nonces rejected with 400 Bad Request.", "2026-11-15", "2026-11-28"],
+    ["AWMS-12", "Story", "Customer Order Placement", "As a customer, create and track warehouse order status.", "High", "5", "", "Order Fulfillment", "Stock availability check before order creation.", "2026-10-20", "2026-11-05"],
+    ["AWMS-13", "Story", "Update Order Status via Tasks", "As an operator, completed robot tasks update order fulfillment status.", "High", "5", "", "Order Fulfillment", "All tasks completion triggers FULFILLED status on customer order.", "2026-11-06", "2026-11-20"],
+    ["AWMS-14", "Story", "Security Audit Stream", "As a security auditor, review security events and logs.", "High", "5", "", "Audit Logging and Security Monitoring", "Log stream captures actor, role, action, result, IP, and timestamp.", "2026-11-20", "2026-12-01"],
+    ["AWMS-15", "Story", "Automated Security CI/CD", "As security eng, automated Bandit, pip-audit, and pytest in CI/CD.", "High", "5", "", "Secure DevOps and Deployment", "Pipeline blocks pull requests failing security scans.", "2026-11-25", "2026-12-04"]
+]
+
+with open(csv_path, "w", newline="", encoding="utf-8") as f:
+    writer = csv.writer(f)
+    writer.writerow(headers)
+    writer.writerows(rows)
+
+print(f"Updated Jira CSV with Start Date and Due Date columns: {csv_path}")

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700">
+  <style>
+    .title { font-family: system-ui, sans-serif; font-size: 20px; font-weight: bold; fill: #1e3a8a; text-anchor: middle; }
+    .sub { font-family: system-ui, sans-serif; font-size: 12px; fill: #64748b; text-anchor: middle; }
+    .box-blue { fill: #dbeafe; stroke: #2563eb; stroke-width: 2; rx: 8; ry: 8; }
+    .box-amber { fill: #fef3c7; stroke: #d97706; stroke-width: 2; rx: 8; ry: 8; }
+    .box-rose { fill: #fee2e2; stroke: #dc2626; stroke-width: 2; rx: 8; ry: 8; }
+    .box-green { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; rx: 8; ry: 8; }
+    .box-purple { fill: #f3e8ff; stroke: #7c3aed; stroke-width: 2; rx: 8; ry: 8; }
+    .box-slate { fill: #f8fafc; stroke: #475569; stroke-width: 2; rx: 8; ry: 8; }
+    .label { font-family: system-ui, sans-serif; font-size: 13px; font-weight: 600; fill: #0f172a; text-anchor: middle; }
+    .label-sm { font-family: system-ui, sans-serif; font-size: 11px; fill: #334155; text-anchor: middle; }
+    .line { stroke: #475569; stroke-width: 2; marker-end: url(#arrow); }
+    .actor { fill: #e2e8f0; stroke: #334155; stroke-width: 2; }
+  </style>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569" />
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff" />
+  <text x="500.0" y="35" class="title">AWMS Level-1 DFD with Trust Boundaries</text>
+  
+  
+<!-- Trust Boundaries -->
+<rect x="40" y="80" width="220" height="540" fill="#eff6ff" stroke="#93c5fd" stroke-dasharray="6,6" rx="8" />
+<text x="150" y="110" class="label" fill="#1e40af">User Zone (External)</text>
+
+<rect x="300" y="80" width="400" height="540" fill="#f0fdf4" stroke="#86efac" stroke-dasharray="6,6" rx="8" />
+<text x="500" y="110" class="label" fill="#166534">Application Zone (AWMS Backend)</text>
+
+<rect x="740" y="80" width="220" height="540" fill="#fffbeb" stroke="#fde047" stroke-dasharray="6,6" rx="8" />
+<text x="850" y="110" class="label" fill="#854d0e">Robot OT Zone</text>
+
+<!-- Processes inside App Zone -->
+<circle cx="400" cy="180" r="45" class="box-blue" />
+<text x="400" y="185" class="label-sm">1.0 Auth Service</text>
+
+<circle cx="600" cy="180" r="45" class="box-blue" />
+<text x="600" y="185" class="label-sm">2.0 Inventory Mgt</text>
+
+<circle cx="400" cy="340" r="45" class="box-blue" />
+<text x="400" y="345" class="label-sm">3.0 Order Fulfillment</text>
+
+<circle cx="600" cy="340" r="45" class="box-amber" />
+<text x="600" y="345" class="label-sm">4.0 Cmd Auth</text>
+
+<circle cx="500" cy="500" r="45" class="box-purple" />
+<text x="500" y="505" class="label-sm">5.0 Security Audit</text>
+
+</svg>

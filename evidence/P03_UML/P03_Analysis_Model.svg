@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700">
+  <style>
+    .title { font-family: system-ui, sans-serif; font-size: 20px; font-weight: bold; fill: #1e3a8a; text-anchor: middle; }
+    .sub { font-family: system-ui, sans-serif; font-size: 12px; fill: #64748b; text-anchor: middle; }
+    .box-blue { fill: #dbeafe; stroke: #2563eb; stroke-width: 2; rx: 8; ry: 8; }
+    .box-amber { fill: #fef3c7; stroke: #d97706; stroke-width: 2; rx: 8; ry: 8; }
+    .box-rose { fill: #fee2e2; stroke: #dc2626; stroke-width: 2; rx: 8; ry: 8; }
+    .box-green { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; rx: 8; ry: 8; }
+    .box-purple { fill: #f3e8ff; stroke: #7c3aed; stroke-width: 2; rx: 8; ry: 8; }
+    .box-slate { fill: #f8fafc; stroke: #475569; stroke-width: 2; rx: 8; ry: 8; }
+    .label { font-family: system-ui, sans-serif; font-size: 13px; font-weight: 600; fill: #0f172a; text-anchor: middle; }
+    .label-sm { font-family: system-ui, sans-serif; font-size: 11px; fill: #334155; text-anchor: middle; }
+    .line { stroke: #475569; stroke-width: 2; marker-end: url(#arrow); }
+    .actor { fill: #e2e8f0; stroke: #334155; stroke-width: 2; }
+  </style>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569" />
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff" />
+  <text x="500.0" y="35" class="title">AWMS Warehouse Fulfillment Scenario Analysis Model</text>
+  
+  
+<rect x="50" y="100" width="200" height="60" class="box-blue" />
+<text x="150" y="135" class="label">1. Customer Order Placed</text>
+
+<line x1="250" y1="130" x2="330" y2="130" class="line" />
+
+<rect x="330" y="100" width="240" height="60" class="box-blue" />
+<text x="450" y="135" class="label">2. Verify Stock &amp; Reserve Qty</text>
+
+<line x1="570" y1="130" x2="650" y2="130" class="line" />
+
+<rect x="650" y="100" width="250" height="60" class="box-blue" />
+<text x="775" y="135" class="label">3. Create Task (PICK/MOVE/DROP)</text>
+
+<line x1="775" y1="160" x2="775" y2="240" class="line" />
+
+<rect x="650" y="240" width="250" height="60" class="box-amber" />
+<text x="775" y="275" class="label">4. Assign Available AGV (IDLE)</text>
+
+<line x1="650" y1="270" x2="570" y2="270" class="line" />
+
+<rect x="330" y="240" width="240" height="60" class="box-amber" />
+<text x="450" y="275" class="label">5. Issue HMAC Signed Command</text>
+
+<line x1="330" y1="270" x2="250" y2="270" class="line" />
+
+<rect x="50" y="240" width="200" height="60" class="box-rose" />
+<text x="150" y="265" class="label">6. Verify HMAC &amp; Nonce</text>
+<text x="150" y="285" class="label-sm">(Replay Protection)</text>
+
+<line x1="150" y1="300" x2="150" y2="380" class="line" />
+
+<rect x="50" y="380" width="200" height="60" class="box-green" />
+<text x="150" y="415" class="label">7. Move Item to Packing Zone</text>
+
+<line x1="250" y1="410" x2="330" y2="410" class="line" />
+
+<rect x="330" y="380" width="280" height="60" class="box-green" />
+<text x="470" y="415" class="label">8. Order Status: FULFILLED</text>
+
+</svg>

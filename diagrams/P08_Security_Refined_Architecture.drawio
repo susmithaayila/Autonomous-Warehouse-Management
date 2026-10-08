@@ -1,0 +1,22 @@
+<mxfile host="app.diagrams.net" modified="2026-10-08T10:00:00.000Z" agent="Antigravity IDE" version="21.0.0" type="device">
+  <diagram id="P08_Security_Refined_Architecture_drawio" name="AWMS Refined Architecture">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+<mxCell id="title" value="AWMS - Security Refined Architecture (Post Attack Tree Analysis)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+  <mxGeometry x="350" y="20" width="460" height="40" as="geometry" />
+</mxCell>
+
+<mxCell id="sec_layer" value="Refined Security Shield: Nonce Verification + HMAC Signature Engine + Audit Stream" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#dc2626;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+  <mxGeometry x="150" y="100" width="860" height="80" as="geometry" />
+</mxCell>
+<mxCell id="core_app" value="AWMS Core Application Engine (ACID Transaction Isolation &amp; Concurrency Locks)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#2563eb;fontStyle=1;" vertex="1" parent="1">
+  <mxGeometry x="150" y="230" width="860" height="80" as="geometry" />
+</mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

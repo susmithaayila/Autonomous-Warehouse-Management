@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700">
+  <style>
+    .title { font-family: system-ui, sans-serif; font-size: 20px; font-weight: bold; fill: #1e3a8a; text-anchor: middle; }
+    .sub { font-family: system-ui, sans-serif; font-size: 12px; fill: #64748b; text-anchor: middle; }
+    .box-blue { fill: #dbeafe; stroke: #2563eb; stroke-width: 2; rx: 8; ry: 8; }
+    .box-amber { fill: #fef3c7; stroke: #d97706; stroke-width: 2; rx: 8; ry: 8; }
+    .box-rose { fill: #fee2e2; stroke: #dc2626; stroke-width: 2; rx: 8; ry: 8; }
+    .box-green { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; rx: 8; ry: 8; }
+    .box-purple { fill: #f3e8ff; stroke: #7c3aed; stroke-width: 2; rx: 8; ry: 8; }
+    .box-slate { fill: #f8fafc; stroke: #475569; stroke-width: 2; rx: 8; ry: 8; }
+    .label { font-family: system-ui, sans-serif; font-size: 13px; font-weight: 600; fill: #0f172a; text-anchor: middle; }
+    .label-sm { font-family: system-ui, sans-serif; font-size: 11px; fill: #334155; text-anchor: middle; }
+    .line { stroke: #475569; stroke-width: 2; marker-end: url(#arrow); }
+    .actor { fill: #e2e8f0; stroke: #334155; stroke-width: 2; }
+  </style>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569" />
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff" />
+  <text x="500.0" y="35" class="title">AWMS Context Level-0 Data Flow Diagram</text>
+  
+  
+<rect x="80" y="200" width="180" height="80" class="box-slate" />
+<text x="170" y="245" class="label">Customer / Operator / Admin</text>
+
+<circle cx="500" cy="240" r="100" class="box-blue" />
+<text x="500" y="235" class="label">0.0 AWMS Core System</text>
+<text x="500" y="255" class="label-sm">(Autonomous Warehouse Mgt)</text>
+
+<rect x="740" y="200" width="180" height="80" class="box-slate" />
+<text x="830" y="245" class="label">Autonomous Robot (AGV)</text>
+
+<line x1="260" y1="220" x2="400" y2="220" class="line" />
+<text x="330" y="210" class="label-sm">Orders &amp; Commands</text>
+
+<line x1="400" y1="260" x2="260" y2="260" class="line" />
+<text x="330" y="280" class="label-sm">Status &amp; Inventory Data</text>
+
+<line x1="600" y1="220" x2="740" y2="220" class="line" />
+<text x="670" y="210" class="label-sm">HMAC Signed Cmd</text>
+
+<line x1="740" y1="260" x2="600" y2="260" class="line" />
+<text x="670" y="280" class="label-sm">Robot Heartbeat/Status</text>
+
+</svg>

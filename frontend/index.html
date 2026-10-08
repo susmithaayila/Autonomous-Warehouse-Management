@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous Warehouse Management System (AWMS)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="nav-brand">
+            <div class="logo-icon">🤖</div>
+            <div class="brand-text">
+                <span class="brand-name">AWMS</span>
+                <span class="brand-sub">Autonomous Warehouse</span>
+            </div>
+        </div>
+        <nav class="nav-links" id="nav-links">
+            <button class="nav-btn active" data-tab="dashboard-tab">📊 Dashboard</button>
+            <button class="nav-btn" data-tab="inventory-tab">📦 Inventory</button>
+            <button class="nav-btn" data-tab="robots-tab">🦾 Robots</button>
+            <button class="nav-btn" data-tab="tasks-tab">⚡ Tasks & Commands</button>
+            <button class="nav-btn" data-tab="orders-tab">🛒 Orders</button>
+            <button class="nav-btn" data-tab="security-tab">🛡️ Security & Audit</button>
+        </nav>
+        <div class="user-profile" id="user-profile">
+            <div class="user-badge" id="user-badge">Not Logged In</div>
+            <button id="auth-btn" class="btn-primary">Login</button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Notification Banner -->
+        <div id="toast-container" class="toast-container"></div>
+
+        <!-- LOGIN MODAL -->
+        <div id="login-modal" class="modal">
+            <div class="modal-content glass-card">
+                <div class="modal-header">
+                    <h2>🔐 Secure AWMS Login</h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" placeholder="e.g. admin, operator, customer, auditor" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="Enter password" required>
+                        </div>
+                        <div class="quick-credentials">
+                            <p>Quick Login Demo Accounts:</p>
+                            <div class="chip-group">
+                                <button type="button" class="chip" onclick="quickFill('admin','AdminPass123!')">Admin</button>
+                                <button type="button" class="chip" onclick="quickFill('operator','OperatorPass123!')">Operator</button>
+                                <button type="button" class="chip" onclick="quickFill('customer','CustomerPass123!')">Customer</button>
+                                <button type="button" class="chip" onclick="quickFill('auditor','AuditorPass123!')">Auditor</button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-submit">Authenticate</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 1: DASHBOARD -->
+        <section id="dashboard-tab" class="tab-content active">
+            <div class="section-title">
+                <h1>Warehouse Operational Dashboard</h1>
+                <p>Real-time autonomous robot status, inventory levels, and task monitor</p>
+            </div>
+            
+            <!-- Metric Cards -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon">📦</div>
+                    <div class="metric-info">
+                        <span class="metric-label">Total Inventory Items</span>
+                        <span class="metric-value" id="dash-total-inventory">--</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">🦾</div>
+                    <div class="metric-info">
+                        <span class="metric-label">Active Autonomous Robots</span>
+                        <span class="metric-value" id="dash-active-robots">--</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">⏳</div>
+                    <div class="metric-info">
+                        <span class="metric-label">Pending Fulfillment Tasks</span>
+                        <span class="metric-value" id="dash-pending-tasks">--</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">🛡️</div>
+                    <div class="metric-info">
+                        <span class="metric-label">Security Threat Index</span>
+                        <span class="metric-value status-low" id="dash-security-status">LOW RISK</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- Fleet Status -->
+                <div class="card glass-card">
+                    <h3>🤖 Autonomous Robot Fleet</h3>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Status</th>
+                                    <th>Battery</th>
+                                    <th>Location</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dash-robots-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Recent Orders -->
+                <div class="card glass-card">
+                    <h3>🛒 Active Customer Orders</h3>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Order #</th>
+                                    <th>Status</th>
+                                    <th>Created</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dash-orders-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: INVENTORY MANAGEMENT -->
+        <section id="inventory-tab" class="tab-content">
+            <div class="section-title">
+                <h1>Inventory Management</h1>
+                <p>ACID-protected inventory stock monitoring and update controls</p>
+            </div>
+            
+            <div class="action-bar admin-operator-only">
+                <button class="btn-primary" onclick="openAddInventoryModal()">➕ Add Inventory Item</button>
+            </div>
+
+            <div class="card glass-card">
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>SKU</th>
+                                <th>Item Name</th>
+                                <th>Location</th>
+                                <th>Available Stock</th>
+                                <th>Reserved</th>
+                                <th>Unit Price ($)</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventory-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: ROBOT MANAGEMENT -->
+        <section id="robots-tab" class="tab-content">
+            <div class="section-title">
+                <h1>Autonomous Robot Fleet</h1>
+                <p>Robot registration, identity secrets, heartbeat, and position tracking</p>
+            </div>
+
+            <div class="action-bar admin-only">
+                <button class="btn-primary" onclick="openRegisterRobotModal()">➕ Register New Robot</button>
+            </div>
+
+            <div class="robots-grid" id="robots-cards-grid"></div>
+        </section>
+
+        <!-- TAB 4: TASKS & ROBOT COMMANDS -->
+        <section id="tasks-tab" class="tab-content">
+            <div class="section-title">
+                <h1>Tasks & HMAC Command Controller</h1>
+                <p>Task assignment, nonce checking, HMAC-SHA256 command issuing & execution</p>
+            </div>
+
+            <div class="task-grid">
+                <!-- Task List -->
+                <div class="card glass-card">
+                    <h3>📋 Warehouse Tasks</h3>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Task Code</th>
+                                    <th>Pickup</th>
+                                    <th>Drop</th>
+                                    <th>Robot</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tasks-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Command History -->
+                <div class="card glass-card">
+                    <h3>⚡ Robot Command History</h3>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Command ID</th>
+                                    <th>Type</th>
+                                    <th>Robot</th>
+                                    <th>Nonce</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="commands-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: ORDERS -->
+        <section id="orders-tab" class="tab-content">
+            <div class="section-title">
+                <h1>Customer Orders & Warehouse Fulfillment</h1>
+                <p>Order placement, stock reservation, task creation and fulfillment pipeline</p>
+            </div>
+
+            <div class="action-bar">
+                <button class="btn-primary" onclick="openCreateOrderModal()">🛒 Create New Customer Order</button>
+            </div>
+
+            <div class="card glass-card">
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Order #</th>
+                                <th>Customer ID</th>
+                                <th>Status</th>
+                                <th>Created At</th>
+                                <th>Updated At</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 6: SECURITY & AUDIT -->
+        <section id="security-tab" class="tab-content">
+            <div class="section-title">
+                <h1>Security Audit & Real-time Monitoring</h1>
+                <p>Security metrics, access logs, privilege escalation alerts, and threat prevention</p>
+            </div>
+
+            <!-- Security Metrics -->
+            <div class="metrics-grid">
+                <div class="metric-card alert-card">
+                    <div class="metric-icon">🚫</div>
+                    <div class="metric-info">
+                        <span class="metric-label">Failed Login Attempts</span>
+                        <span class="metric-value" id="sec-failed-logins">0</span>
+                    </div>
+                </div>
+                <div class="metric-card alert-card">
+                    <div class="metric-icon">⚠️</div>
+                    <div class="metric-info">
+                        <span class="metric-label">Unauthorized Commands</span>
+                        <span class="metric-value" id="sec-unauth-cmds">0</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">🔑</div>
+                    <div class="metric-info">
+                        <span class="metric-label">Privilege Changes</span>
+                        <span class="metric-value" id="sec-priv-changes">0</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">⚡</div>
+                    <div class="metric-info">
+                        <span class="metric-label">Command Conflicts</span>
+                        <span class="metric-value" id="sec-cmd-conflicts">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card glass-card">
+                <h3>📜 System Audit Log Stream</h3>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Actor</th>
+                                <th>Role</th>
+                                <th>Action</th>
+                                <th>Resource</th>
+                                <th>Result</th>
+                                <th>Severity</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="audit-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
