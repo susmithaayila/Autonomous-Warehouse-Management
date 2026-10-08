@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTasksData();
     loadOrdersData();
     loadSecurityData();
+    loadDockerData();
+    loadCICDData();
 
     // Auto refresh every 10s
     setInterval(() => {
@@ -19,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
             loadRobotsData();
             loadTasksData();
             loadSecurityData();
+            loadDockerData();
+            loadCICDData();
         }
     }, 10000);
 });
@@ -490,5 +494,27 @@ async function openCreateOrderModal() {
         loadDashboardData();
     } catch (e) {
         showToast(e.message, 'error');
+    }
+}
+
+async function loadDockerData() {
+    try {
+        const res = await fetch(`${API_BASE}/docker/status`);
+        if (!res.ok) return;
+        const data = await res.json();
+        console.log('Docker Operations Status:', data);
+    } catch (e) {
+        console.error('Docker load error:', e);
+    }
+}
+
+async function loadCICDData() {
+    try {
+        const res = await fetch(`${API_BASE}/cicd/status`);
+        if (!res.ok) return;
+        const data = await res.json();
+        console.log('CI/CD Pipeline Status:', data);
+    } catch (e) {
+        console.error('CI/CD load error:', e);
     }
 }
